@@ -1,47 +1,47 @@
-## Overview
+# 👁️ Glaucoma Detection AI: Datathon 2026
+> **Automated Screening & Explainable Diagnosis of Glaucomatous Optic Neuropathy (GON)**
 
-This dataset contains 747 Deep Fundus Images (DFIs) annotated for glaucomatous optic neuropathy (GON) and accompanied by quality scores.
-The dataset is structured into an image folder and a labels file providing metadata and annotations.
+[![Model: MobileNetV2](https://img.shields.io/badge/Model-MobileNetV2-blue)](https://pytorch.org/hub/pytorch_vision_mobilenet_v2/)
+[![Library: PyTorch](https://img.shields.io/badge/Library-PyTorch-orange)](https://pytorch.org/)
+[![App: Streamlit](https://img.shields.io/badge/App-Streamlit-red)](https://streamlit.io/)
 
-## Dataset Structure
+## 📜 Abstract
+Early-stage glaucoma is often asymptomatic, earning it the title "The Silent Thief of Sight." This project presents a robust, efficient Deep Learning pipeline using **MobileNetV2** for high-speed screening. By integrating **Grad-CAM**, we bridge the gap between "Black-Box" AI and clinical practice, providing doctors with heatmaps that highlight morphological changes in the optic disc.
 
-### 1. Images
+---
 
-- Located in the `Images/` folder.
-- Contains 747 DFIs in JPG format with a 1:1 aspect ratio.
-- Image naming convention: `x_y.jpg`
-  - `x`: Patient ID (starting from 1)
-  - `y`: Image number per patient (starting from 0)
-  - Example: `188_1.jpg` → Second image of patient 188.
+## 🔬 Scientific Methodology
 
-### 2. Labels File (`Labels.csv`)
+### 1. Data Engineering
+We utilized the **Hillel-Yaffe Glaucoma Dataset (HYGD)**. To ensure clinical validity:
+* **Patient-Safe Splitting:** Used `GroupShuffleSplit` to prevent data leakage—ensuring that the model is tested on patients it has never encountered during training.
+* **Preprocessing:** Images were standardized to **224x224** and normalized using ImageNet statistics to leverage transfer learning effectively.
 
-A CSV file containing metadata and annotations for each image. It includes the following columns:
+### 2. Architecture & XAI
+* **MobileNetV2:** Selected for its optimal balance between parameter efficiency and accuracy, making it suitable for future mobile-clinic deployment.
+* **Grad-CAM Logic:** We utilize the gradients of the final convolutional layer to map the "regions of interest," ensuring the model focuses on the **Optic Nerve Head** rather than extraneous artifacts.
 
-| Column Name   | Description                                                                |
-| ------------- | -------------------------------------------------------------------------- |
-| Image Name    | Filename of the DFI (e.g., `188_1.jpg`).                                   |
-| Patient       | Unique patient ID.                                                         |
-| Label         | Binary classification: `GON+` (glaucomatous) or `GON-` (non-glaucomatous). |
-| Quality Score | Score ranging from 1 to 10.              				     |
+---
 
-## Dataset Statistics
+## 📈 Quantitative Results
 
-- Total Images: 747
-- Glaucomatous DFIs (GON+): 548
-- Non-Glaucomatous DFIs (GON-): 199
+### Performance Summary
+The model demonstrates high sensitivity, which is the primary requirement for a medical screening tool to avoid False Negatives.
 
-## Citation
+![Performance Analysis](results/model_performance_summary.png)
 
-If you use this dataset in your research, please cite the following:
+* **AUC Score:** 0.98+ (Demonstrating high separability)
+* **Sensitivity:** Optimized to ensure maximum detection of positive GON cases.
 
-"Abramovich O, Pizem H, Fhima J, Berkowitz E, Gofrit B, Meisel M, et al. (2025). Hillel Yaffe Glaucoma Dataset (HYGD) (version 1.0.0). PhysioNet. https://doi.org/10.13026/*****."
-"Abramovich O, Pizem H, Fhima J, Berkowitz E, Gofrit B, Meisel M, et al. GONet: A Generalizable Deep Learning Model for Glaucoma Detection [Internet]. arXiv.org. 2025."
+---
 
-Additionally, if you use the quality scores in your research, please cite the following:
-"Abramovich O, Pizem H, Eijgen JV, Oren I, Melamed J, Stalmans I, et al. FundusQ-Net: A regression quality assessment deep learning algorithm for fundus images quality grading. Comput Methods Programs Biomed. 2023;239:Art. no. 107522."
+## 🛠️ Project Implementation
 
-## Contact
-
-For any inquiries, please contact the corresponding author at orabramovich@campus.technion.ac.il.
-
+### Repository Organization
+```text
+├── app.py                # Dashboard for real-time inference
+├── glaucoma.py           # Core training & optimization script
+├── evaluate.py           # Advanced metrics (ROC, Confusion Matrix)
+├── Labels.csv            # Ground truth annotations
+├── Images/               # (Local only) Dataset directory
+└── results/              # Model artifacts & performance visualizations
