@@ -28,7 +28,7 @@ We utilized the **Hillel-Yaffe Glaucoma Dataset (HYGD)**. To ensure clinical val
 ### Performance Summary
 The model demonstrates high sensitivity, which is the primary requirement for a medical screening tool to avoid False Negatives.
 
-![Performance Analysis](results/model_performance_summary.png)
+![Model Performance Summary](results/evaluation_metrics.png)
 
 * **AUC Score:** 0.98+ (Demonstrating high separability)
 * **Sensitivity:** Optimized to ensure maximum detection of positive GON cases.
