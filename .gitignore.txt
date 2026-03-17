@@ -1,0 +1,15 @@
+# Ignore the dataset images and CSV
+Images/
+Labels.csv
+hillel-yaffe-glaucoma-dataset-*/
+
+# Ignore the heavy model weights
+*.pth
+
+# Ignore Python cache
+__pycache__/
+.venv/
+
+Images/
+*.pth
+__pycache__/
