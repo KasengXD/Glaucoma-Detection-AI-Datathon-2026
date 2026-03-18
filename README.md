@@ -86,17 +86,19 @@ With near-perfect AUC and minimal classification errors, it is well-suited for d
 This project is implemented using a modular deep learning pipeline designed for scalability, reproducibility, and real-time inference.
 
 ### 📂 Repository Structure
-├── training.py              # Data Preprocessing & Model Training (EfficientNet-B0)
-├── evaluate.py              # Performance Metrics (ROC, Confusion Matrix)
-├── app.py                   # Streamlit Web Interface (Main Dashboard)
-├── utils.py                 # Custom Dataset (HYGDDataset) & Image Transforms
-├── Labels.csv               # Metadata & Clinical Labels (Hillel-Yaffe Dataset)
-├── Images/                  # Dataset (Retinal Fundus Images)
-├── results/                 # Folder for model artifacts and plots
-│   ├── evaluation_metrics.png # Generated ROC (AUC 0.9902) & Confusion Matrix
-│   └── training_history.png   # Loss and Accuracy curves over 10 epochs
-├── LICENSE                  # MIT License
-└── README.md                # Project Documentation & Guide
+Glaucoma-Detection-AI-Datathon-2026/
+│
+├── training.py # Data preprocessing & model training (EfficientNet-B0)
+├── evaluate.py # Performance evaluation (ROC, confusion matrix)
+├── app.py # Streamlit web interface (dashboard + inference)
+├── utils.py # Custom dataset (HYGDDataset) & image transforms
+├── Labels.csv # Metadata & clinical labels (HYGD dataset)
+├── Images/ # Retinal fundus image dataset
+├── results/ # Model artifacts and evaluation outputs
+│ ├── evaluation_metrics.png # ROC curve (AUC 0.9902) & confusion matrix
+│ └── training_history.png # Training loss & accuracy over epochs
+├── LICENSE # MIT license
+└── README.md # Project documentation
 
 ---
 
