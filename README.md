@@ -1,47 +1,61 @@
-# 👁️ Glaucoma Detection AI: Datathon 2026
-> **Automated Screening & Explainable Diagnosis of Glaucomatous Optic Neuropathy (GON)**
+👁️ Glaucoma Detection AI: Datathon 2026
+Automated Screening & Explainable Diagnosis of Glaucomatous Optic Neuropathy (GON)
 
-[![Model: MobileNetV2](https://img.shields.io/badge/Model-MobileNetV2-blue)](https://pytorch.org/hub/pytorch_vision_mobilenet_v2/)
-[![Library: PyTorch](https://img.shields.io/badge/Library-PyTorch-orange)](https://pytorch.org/)
-[![App: Streamlit](https://img.shields.io/badge/App-Streamlit-red)](https://streamlit.io/)
+📜 Abstract
+Early-stage glaucoma is often asymptomatic, earning it the title "The Silent Thief of Sight." This project presents a robust, efficient Deep Learning pipeline using EfficientNet-B0 for high-speed screening. By integrating Grad-CAM, we bridge the gap between "Black-Box" AI and clinical practice, providing doctors with heatmaps that highlight morphological changes in the retinal fundus.
 
-## 📜 Abstract
-Early-stage glaucoma is often asymptomatic, earning it the title "The Silent Thief of Sight." This project presents a robust, efficient Deep Learning pipeline using **MobileNetV2** for high-speed screening. By integrating **Grad-CAM**, we bridge the gap between "Black-Box" AI and clinical practice, providing doctors with heatmaps that highlight morphological changes in the optic disc.
+🔬 Scientific Methodology
+1. Data Engineering
+We utilized the Hillel-Yaffe Glaucoma Dataset (HYGD). To ensure clinical validity:
 
----
+Patient-Safe Splitting: Used GroupShuffleSplit to prevent data leakage—ensuring that the model is tested on patients it has never encountered during training.
 
-## 🔬 Scientific Methodology
+Preprocessing: Images were standardized to 224x224 and normalized using ImageNet statistics to leverage transfer learning effectively.
 
-### 1. Data Engineering
-We utilized the **Hillel-Yaffe Glaucoma Dataset (HYGD)**. To ensure clinical validity:
-* **Patient-Safe Splitting:** Used `GroupShuffleSplit` to prevent data leakage—ensuring that the model is tested on patients it has never encountered during training.
-* **Preprocessing:** Images were standardized to **224x224** and normalized using ImageNet statistics to leverage transfer learning effectively.
+2. Architecture & XAI
+EfficientNet-B0: Selected for its state-of-the-art scaling and accuracy, providing a more powerful feature extractor than standard legacy models.
 
-### 2. Architecture & XAI
-* **MobileNetV2:** Selected for its optimal balance between parameter efficiency and accuracy, making it suitable for future mobile-clinic deployment.
-* **Grad-CAM Logic:** We utilize the gradients of the final convolutional layer to map the "regions of interest," ensuring the model focuses on the **Optic Nerve Head** rather than extraneous artifacts.
+Grad-CAM Logic: We utilize the gradients of the final convolutional layer (model.features[-1]) to map the "regions of interest," ensuring the model focuses on the Optic Nerve Head rather than extraneous artifacts.
 
----
+📈 Quantitative Results
+Performance Summary
+The model demonstrates exceptional reliability and high sensitivity, which is the primary requirement for a medical screening tool to avoid False Negatives.
 
-## 📈 Quantitative Results
+AUC Score: 0.9902 (Demonstrating near-perfect separability).
 
-### Performance Summary
-The model demonstrates high sensitivity, which is the primary requirement for a medical screening tool to avoid False Negatives.
+Sensitivity: Correctly identified 97 out of 99 positive Glaucoma (GON+) cases.
 
-![Model Performance Summary](results/evaluation_metrics.png)
+Specificity: Successfully identified 31 out of 33 Normal (GON-) cases.
 
-* **AUC Score:** 0.98+ (Demonstrating high separability)
-* **Sensitivity:** Optimized to ensure maximum detection of positive GON cases.
-
----
-
-## 🛠️ Project Implementation
-
-### Repository Organization
-```text
+🛠️ Project Implementation
+Repository Organization
+Plaintext
 ├── app.py                # Dashboard for real-time inference
-├── glaucoma.py           # Core training & optimization script
+├── training.py           # Core training & optimization script
 ├── evaluate.py           # Advanced metrics (ROC, Confusion Matrix)
+├── utils.py              # Custom Dataset (HYGDDataset) and Transforms
 ├── Labels.csv            # Ground truth annotations
 ├── Images/               # (Local only) Dataset directory
-└── results/              # Model artifacts & performance visualizations
+└── results/              # Performance visualizations (ROC, Confusion Matrix)
+
+Installation & Deployment
+
+Clone & Install:
+pip install torch torchvision streamlit opencv-python pandas scikit-learn matplotlib plotly grad-cam
+
+Train & Evaluate:
+python training.py
+python evaluate.py
+
+Launch Clinical Dashboard:
+python -m streamlit run app.py
+🌟 Clinical Impact & Future Work
+High-Precision Screening: With an AUC of 0.99, the tool is highly reliable for preliminary screenings.
+
+Explainability: Grad-CAM visualizations help build trust with medical practitioners by justifying AI decisions.
+
+Author: WONG KA SENG
+
+Event: Datathon 2026
+
+License: MIT
