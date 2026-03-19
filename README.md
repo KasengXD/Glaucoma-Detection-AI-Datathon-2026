@@ -158,3 +158,53 @@ Glaucoma-Detection-AI-Datathon-2026/
 - **Scalability:** Modular code structure for easy extension  
 
 ---
+## 🚀 How to Run the Application
+
+Follow the steps below to run the Glaucoma Detection AI web application locally using Streamlit.
+
+---
+
+### 1️⃣ Clone the Repository
+
+First, clone the project from GitHub and navigate into the folder:
+
+---
+
+### 2️⃣ Install Required Dependencies
+
+Install all necessary Python libraries using pip:
+
+If the `requirements.txt` file is not available, install the dependencies manually:
+
+---
+
+### 3️⃣ Run the Streamlit Application
+
+Run the following command to start the web application:
+
+---
+
+### 4️⃣ Open the Application in Your Browser
+
+After running the command, you will see a message like this:
+
+Open this link in your web browser to access the application interface.
+
+---
+
+## 🖥️ Application Features
+
+- Upload retinal fundus images for analysis  
+- Classify images as **Normal** or **Glaucoma (GON+)**  
+- Display prediction confidence scores  
+- Visualize **Grad-CAM heatmaps** for explainable AI insights  
+
+---
+
+## ⚠️ Notes
+
+- Ensure all dependencies are installed correctly before running the app  
+- Large dataset files and trained model weights are not included due to GitHub file size limitations  
+- Recommended Python version: **Python 3.8 or higher**  
+
+---
